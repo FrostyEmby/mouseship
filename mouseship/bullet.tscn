@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cu6qo7n5818ek"]
+
+[ext_resource type="Script" uid="uid://573d8hlrmjjs" path="res://bullet.gd" id="1_v7oki"]
+[ext_resource type="Texture2D" uid="uid://btbckd0leqm4e" path="res://bullet.png" id="2_v8qja"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_tlwt5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tlwt5"]
+size = Vector2(5.875, 8)
+
+[node name="Bullet" type="AnimatableBody2D"]
+collision_layer = 4
+collision_mask = 3
+physics_material_override = SubResource("PhysicsMaterial_tlwt5")
+script = ExtResource("1_v7oki")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(5.9604645e-08, 0)
+texture = ExtResource("2_v8qja")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.0625, 0)
+shape = SubResource("RectangleShape2D_tlwt5")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+rect = Rect2(-3, -4, 6, 8)
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="screen_exited"]
